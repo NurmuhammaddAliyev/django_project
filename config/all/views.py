@@ -1,4 +1,5 @@
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -23,10 +24,26 @@ def home(request):
         """
     )
 
-#
-# def logout_view(request):
-#     logout(request)
-#     return redirect("home")
+
+def create_admin(request):
+    username = "admin"
+    password = "admin12345"
+    email = "admin@example.com"
+
+    if User.objects.filter(username=username).exists():
+        return HttpResponse("Admin already exists")
+
+    User.objects.create_superuser(
+        username=username,
+        email=email,
+        password=password,
+    )
+    return HttpResponse("Superuser created")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")
 
 
 @login_required

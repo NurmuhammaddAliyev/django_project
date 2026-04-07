@@ -3,9 +3,10 @@ from django.urls import path
 from .views import (
     admin_panel,
     assignment_detail,
+    create_admin,
     home,
     lesson_detail,
-    # logout_view,
+    logout_view,
     student_panel,
     submission_detail,
     teacher_panel,
@@ -13,7 +14,8 @@ from .views import (
 
 urlpatterns = [
     path("", home, name="home"),
-    # path("logout/", logout_view, name="logout"),
+    path("create-admin/", create_admin, name="create-admin"),
+    path("logout/", logout_view, name="logout"),
     path("admin-panel/", admin_panel, name="admin-panel"),
     path("teacher-panel/", teacher_panel, name="teacher-panel"),
     path("student-panel/", student_panel, name="student-panel"),
