@@ -17,6 +17,4 @@ services:
           name: test-django-db
           property: connectionString
 
-databases:
-  - name: test-django-db
-    plan: free
+
